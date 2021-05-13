@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    if current_user != nil
+    if current_user
       redirect_to :root
     end
   end
@@ -10,12 +10,12 @@ class SessionsController < ApplicationController
       session[:name] = params[:name]
       redirect_to :root
     else
-      render :new
+      redirect_to '/login'
     end
   end
 
   def destroy
     session.delete :name
-    redirect_to :root
+    redirect_to '/login'
   end
 end
